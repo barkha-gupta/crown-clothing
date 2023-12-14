@@ -1,5 +1,4 @@
 import {
-  createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
@@ -29,8 +28,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   async function handleSignInForm(event) {
@@ -41,11 +39,6 @@ const SignInForm = () => {
         email,
         password
       );
-      const authToken = user.authToken;
-      localStorage.setItem("authToken", authToken);
-
-      console.log(user);
-
       resetFormFields;
     } catch (error) {
       console.log(error.code);
