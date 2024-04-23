@@ -6,9 +6,9 @@ import CartItem from "../cart-item/cart-item.component";
 import { Link } from "react-router-dom";
 
 const CardDropdown = () => {
-  const { cartItems, setIsCartOpen } = useContext(CartContext);
+  const { cartItems, isCartOpen, setIsCartOpen } = useContext(CartContext);
   const toggleISCartOpen = () => {
-    setIsCartOpen((pre) => !pre);
+    setIsCartOpen(!isCartOpen);
   };
   return (
     <div className="cart-dropdown-container">
