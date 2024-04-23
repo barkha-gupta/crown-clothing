@@ -4,10 +4,12 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./sign-in-form.styles.scss";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const SignInForm = () => {
+  const navigate = useNavigate();
   const defaultFormFields = {
     email: "",
     password: "",
@@ -38,7 +40,10 @@ const SignInForm = () => {
         email,
         password
       );
-      resetFormFields;
+      resetFormFields();
+      if (user) {
+        navigate("/shop");
+      }
     } catch (error) {
       console.log(error.code);
       alert("User sign-in failed");
@@ -46,7 +51,6 @@ const SignInForm = () => {
   }
   return (
     <div className="sign-up-container">
-      {/* <pre>{JSON.stringify(formFields)}</pre> */}
       <h2>Already have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSignInForm}>
